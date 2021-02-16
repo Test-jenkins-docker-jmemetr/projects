@@ -19,13 +19,15 @@ properties ([disableConcurrentBilds()])
                   sh 'build'
                   }
                }
-          stage ("Run jmeter-docker")
+          }
+          stage ("Run jmeter-docker") {
              steps {
                 echo "======start run jmeter======"
                 dir('jmeter') {
                 sh 'test'
                 }
             }
-    	}
+          }
+    	
   }
 }
