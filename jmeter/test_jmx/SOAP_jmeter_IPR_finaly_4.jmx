@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Weather forecast" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="host" elementType="Argument">
+            <stringProp name="Argument.name">host</stringProp>
+            <stringProp name="Argument.value">https://graphical.weather.gov</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Host of Webservice</stringProp>
+          </elementProp>
+          <elementProp name="format" elementType="Argument">
+            <stringProp name="Argument.name">format</stringProp>
+            <stringProp name="Argument.value">24 hourly</stringProp>
+            <stringProp name="Argument.desc">hour format 12 or 24</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="unit" elementType="Argument">
+            <stringProp name="Argument.name">unit</stringProp>
+            <stringProp name="Argument.value">m</stringProp>
+            <stringProp name="Argument.desc">xz chto eto</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numday" elementType="Argument">
+            <stringProp name="Argument.name">numday</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.desc">Kol-vo day</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="startdate" elementType="Argument">
+            <stringProp name="Argument.name">startdate</stringProp>
+            <stringProp name="Argument.value">${__time(yyyy-MM-dd,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">time start</stringProp>
+          </elementProp>
+          <elementProp name="startdateminus" elementType="Argument">
+            <stringProp name="Argument.name">startdateminus</stringProp>
+            <stringProp name="Argument.value">${__timeShift(yyyy-MM-dd,,-P1D,,)}</stringProp>
+            <stringProp name="Argument.desc">minus 1 den</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="time" elementType="Argument">
+            <stringProp name="Argument.name">time</stringProp>
+            <stringProp name="Argument.value">${__time(HH:mm:ss,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">время сейчас</stringProp>
+          </elementProp>
+          <elementProp name="product" elementType="Argument">
+            <stringProp name="Argument.name">product</stringProp>
+            <stringProp name="Argument.value">time-series</stringProp>
+            <stringProp name="Argument.desc">Либо glance или time-series</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="timeUTG" elementType="Argument">
+            <stringProp name="Argument.name">timeUTG</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">pasing</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain"></stringProp>
+        <stringProp name="HTTPSampler.port"></stringProp>
+        <stringProp name="HTTPSampler.protocol"></stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.path">${host}/xml/SOAP_server/ndfdXMLserver.php</stringProp>
+        <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="bzm - Random CSV Data Set Config" enabled="true">
+        <stringProp name="filename">.\USAgorod.txt</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="delimiter">\n</stringProp>
+        <stringProp name="variableNames">Randomcity</stringProp>
+        <boolProp name="randomOrder">true</boolProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <boolProp name="rewindOnTheEndOfList">true</boolProp>
+        <boolProp name="independentListPerThread">false</boolProp>
+      </com.blazemeter.jmeter.RandomCSVDataSetConfig>
+      <hashTree/>
+      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="UTG" enabled="true">
+        <collectionProp name="ultimatethreadgroupdata">
+          <collectionProp name="1029638064">
+            <stringProp name="1722">60</stringProp>
+            <stringProp name="0">0</stringProp>
+            <stringProp name="53430">600</stringProp>
+            <stringProp name="56313">900</stringProp>
+            <stringProp name="1567">10</stringProp>
+          </collectionProp>
+          <collectionProp name="942818927">
+            <stringProp name="1722">60</stringProp>
+            <stringProp name="53430">600</stringProp>
+            <stringProp name="30">30</stringProp>
+            <stringProp name="50547">300</stringProp>
+            <stringProp name="10">10</stringProp>
+          </collectionProp>
+        </collectionProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+      </kg.apc.jmeter.threads.UltimateThreadGroup>
+      <hashTree>
+        <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
+          <intProp name="calcMode">0</intProp>
+          <stringProp name="throughput">${timeUTG}</stringProp>
+        </ConstantThroughputTimer>
+        <hashTree/>
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC: city weather" enabled="true">
+          <collectionProp name="ModuleController.node_path">
+            <stringProp name="764597751">Test Plan</stringProp>
+            <stringProp name="268789959">Weather forecast</stringProp>
+            <stringProp name="-1464980649">TF: city weather</stringProp>
+          </collectionProp>
+        </ModuleController>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Logs Data Writer" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">.\SOAPlogs_ipr.csv</stringProp>
+          <boolProp name="ResultCollector.success_only_logging">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Logs Data Writer Error" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>false</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">.\SOAPlogs_ipr_error.csv</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <longProp name="interval_grouping">1000</longProp>
+          <boolProp name="graph_aggregated">false</boolProp>
+          <stringProp name="include_sample_labels"></stringProp>
+          <stringProp name="exclude_sample_labels"></stringProp>
+          <stringProp name="start_offset"></stringProp>
+          <stringProp name="end_offset"></stringProp>
+          <boolProp name="include_checkbox_state">false</boolProp>
+          <boolProp name="exclude_checkbox_state">false</boolProp>
+        </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+        <hashTree/>
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ThreadsStateOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Active Threads Over Time" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <longProp name="interval_grouping">500</longProp>
+          <boolProp name="graph_aggregated">false</boolProp>
+          <stringProp name="include_sample_labels"></stringProp>
+          <stringProp name="exclude_sample_labels"></stringProp>
+          <stringProp name="start_offset"></stringProp>
+          <stringProp name="end_offset"></stringProp>
+          <boolProp name="include_checkbox_state">false</boolProp>
+          <boolProp name="exclude_checkbox_state">false</boolProp>
+        </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+        <hashTree/>
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <longProp name="interval_grouping">500</longProp>
+          <boolProp name="graph_aggregated">false</boolProp>
+          <stringProp name="include_sample_labels"></stringProp>
+          <stringProp name="exclude_sample_labels"></stringProp>
+          <stringProp name="start_offset"></stringProp>
+          <stringProp name="end_offset"></stringProp>
+          <boolProp name="include_checkbox_state">false</boolProp>
+          <boolProp name="exclude_checkbox_state">false</boolProp>
+        </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Debag" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1375525852000</longProp>
+        <longProp name="ThreadGroup.end_time">1375525852000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC: city weather" enabled="true">
+          <collectionProp name="ModuleController.node_path">
+            <stringProp name="764597751">Test Plan</stringProp>
+            <stringProp name="268789959">Weather forecast</stringProp>
+            <stringProp name="-1464980649">TF: city weather</stringProp>
+          </collectionProp>
+        </ModuleController>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>true</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF: city weather" enabled="true"/>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SOAP: Request city weather" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;soapenv:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:ndf=&quot;https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl&quot;&gt;&#xd;
+   &lt;soapenv:Header/&gt;&#xd;
+   &lt;soapenv:Body&gt;&#xd;
+      &lt;ndf:NDFDgen soapenv:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;&#xd;
+         &lt;latitude xsi:type=&quot;xsd:decimal&quot;&gt;${latitude}&lt;/latitude&gt;&#xd;
+         &lt;longitude xsi:type=&quot;xsd:decimal&quot;&gt;${longitude}&lt;/longitude&gt;&#xd;
+         &lt;product xsi:type=&quot;dwml:productType&quot; xmlns:dwml=&quot;https://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd&quot;&gt;${product}&lt;/product&gt;&#xd;
+         &lt;startTime xsi:type=&quot;xsd:dateTime&quot;&gt;${localDateTime3}&lt;/startTime&gt;&#xd;
+         &lt;endTime xsi:type=&quot;xsd:dateTime&quot;&gt;${startdate}T${time}&lt;/endTime&gt;&#xd;
+         &lt;Unit xsi:type=&quot;dwml:unitType&quot; xmlns:dwml=&quot;https://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd&quot;&gt;${unit}&lt;/Unit&gt;&#xd;
+         &lt;weatherParameters xsi:type=&quot;dwml:weatherParametersType&quot; xmlns:dwml=&quot;https://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd&quot;&gt;&#xd;
+            &lt;maxt xsi:type=&quot;xsd:boolean&quot;&gt;true&lt;/maxt&gt;&#xd;
+            &lt;mint xsi:type=&quot;xsd:boolean&quot;&gt;true&lt;/mint&gt;&#xd;
+            &lt;temp xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/temp&gt;&#xd;
+            &lt;dew xsi:type=&quot;xsd:boolean&quot;&gt;true&lt;/dew&gt;&#xd;
+            &lt;pop12 xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/pop12&gt;&#xd;
+            &lt;qpf xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/qpf&gt;&#xd;
+            &lt;sky xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/sky&gt;&#xd;
+            &lt;snow xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/snow&gt;&#xd;
+            &lt;wspd xsi:type=&quot;xsd:boolean&quot;&gt;true&lt;/wspd&gt;&#xd;
+            &lt;wdir xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/wdir&gt;&#xd;
+            &lt;wx xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/wx&gt;&#xd;
+            &lt;waveh xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/waveh&gt;&#xd;
+            &lt;icons xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/icons&gt;&#xd;
+            &lt;rh xsi:type=&quot;xsd:boolean&quot;&gt;true&lt;/rh&gt;&#xd;
+            &lt;appt xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/appt&gt;&#xd;
+            &lt;incw34 xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/incw34&gt;&#xd;
+            &lt;incw50 xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/incw50&gt;&#xd;
+            &lt;incw64 xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/incw64&gt;&#xd;
+            &lt;cumw34 xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/cumw34&gt;&#xd;
+            &lt;cumw50 xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/cumw50&gt;&#xd;
+            &lt;cumw64 xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/cumw64&gt;&#xd;
+            &lt;critfireo xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/critfireo&gt;&#xd;
+            &lt;dryfireo xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/dryfireo&gt;&#xd;
+            &lt;conhazo xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/conhazo&gt;&#xd;
+            &lt;ptornado xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/ptornado&gt;&#xd;
+            &lt;phail xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/phail&gt;&#xd;
+            &lt;ptstmwinds xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/ptstmwinds&gt;&#xd;
+            &lt;pxtornado xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/pxtornado&gt;&#xd;
+            &lt;pxhail xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/pxhail&gt;&#xd;
+            &lt;pxtstmwinds xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/pxtstmwinds&gt;&#xd;
+            &lt;ptotsvrtstm xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/ptotsvrtstm&gt;&#xd;
+            &lt;pxtotsvrtstm xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/pxtotsvrtstm&gt;&#xd;
+            &lt;tmpabv14d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tmpabv14d&gt;&#xd;
+            &lt;tmpblw14d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tmpblw14d&gt;&#xd;
+            &lt;tmpabv30d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tmpabv30d&gt;&#xd;
+            &lt;tmpblw30d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tmpblw30d&gt;&#xd;
+            &lt;tmpabv90d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tmpabv90d&gt;&#xd;
+            &lt;tmpblw90d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tmpblw90d&gt;&#xd;
+            &lt;prcpabv14d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/prcpabv14d&gt;&#xd;
+            &lt;prcpblw14d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/prcpblw14d&gt;&#xd;
+            &lt;prcpabv30d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/prcpabv30d&gt;&#xd;
+            &lt;prcpblw30d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/prcpblw30d&gt;&#xd;
+            &lt;prcpabv90d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/prcpabv90d&gt;&#xd;
+            &lt;prcpblw90d xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/prcpblw90d&gt;&#xd;
+            &lt;precipa_r xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/precipa_r&gt;&#xd;
+            &lt;sky_r xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/sky_r&gt;&#xd;
+            &lt;td_r xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/td_r&gt;&#xd;
+            &lt;temp_r xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/temp_r&gt;&#xd;
+            &lt;wdir_r xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/wdir_r&gt;&#xd;
+            &lt;wspd_r xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/wspd_r&gt;&#xd;
+            &lt;wwa xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/wwa&gt;&#xd;
+            &lt;tstmprb xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tstmprb&gt;&#xd;
+            &lt;tstmcat xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/tstmcat&gt;&#xd;
+            &lt;wgust xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/wgust&gt;&#xd;
+            &lt;iceaccum xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/iceaccum&gt;&#xd;
+            &lt;maxrh xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/maxrh&gt;&#xd;
+            &lt;minrh xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/minrh&gt;&#xd;
+         &lt;/weatherParameters&gt;&#xd;
+      &lt;/ndf:NDFDgen&gt;&#xd;
+   &lt;/soapenv:Body&gt;&#xd;
+&lt;/soapenv:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor GMT4" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">import java.time.*;
+import java.time.format.*;
+String localDateTime2  = LocalDateTime.now(ZoneId.of(&quot;GMT-4&quot;)).toString();
+String localDateTime3 = localDateTime2[0..18];
+vars.put(&quot;localDateTime3&quot;,localDateTime3);
+//log.info(&quot;Date for the GMT time zone: &quot; + localDateTime3);</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor  Paste City" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">${Randomcity}</stringProp>
+            <stringProp name="script">import java.util.*;
+String [] rcity = vars.get(&quot;Randomcity&quot;);
+String [] rancity = (vars.get(&quot;Randomcity&quot;)).split(&quot;,&quot;);
+String [] latitude =  rancity[1];
+String [] longitude = rancity[2];
+String [] city = rancity[0];
+vars.put(&quot;latitude&quot;, latitude);
+vars.put(&quot;longitude&quot;, longitude);
+vars.put(&quot;city&quot;, city);</stringProp>
+            <stringProp name="scriptLanguage">java</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">text/xml; charset=utf-8</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">SOAPAction</stringProp>
+                <stringProp name="Header.value">&quot;https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgen&quot;</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="RA SOAP:Request city weather" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1878671520">National Weather Service Forecast</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor max temperatura" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">maxtemp</stringProp>
+            <stringProp name="RegexExtractor.regex">Daily\sMaximum\sTemperature\&amp;lt;\/name\&amp;gt;\n........\&amp;lt;value\&amp;gt;(.*?)&amp;lt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">not found maxtempr</stringProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor min temperatura" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">mintemp</stringProp>
+            <stringProp name="RegexExtractor.regex">Daily\sMinimum\sTemperature\&amp;lt;\/name\&amp;gt;\n........\&amp;lt;value\&amp;gt;(.*?)&amp;lt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">not found mintempr</stringProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor  Dew Point Temperature" enabled="true">
+            <stringProp name="TestPlan.comments">Температура точки росы</stringProp>
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">dewpoint</stringProp>
+            <stringProp name="RegexExtractor.regex">Dew\sPoint\sTemperature\&amp;lt;\/name\&amp;gt;\n........\&amp;lt;value\&amp;gt;(.*?)&amp;lt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">not found dewpoint</stringProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor  Wind Speed" enabled="true">
+            <stringProp name="TestPlan.comments">Скорость ветра</stringProp>
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">windspeed</stringProp>
+            <stringProp name="RegexExtractor.regex">Wind\sSpeed\&amp;lt;\/name\&amp;gt;\n........\&amp;lt;value\&amp;gt;(.*?)&amp;lt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">not found windspeed</stringProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor  Relative Humidity" enabled="true">
+            <stringProp name="TestPlan.comments">Влажность</stringProp>
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">relativehumidity</stringProp>
+            <stringProp name="RegexExtractor.regex">Relative\sHumidity\&amp;lt;\/name\&amp;gt;\n........\&amp;lt;value\&amp;gt;(.*?)&amp;lt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">not found relativehumidity</stringProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

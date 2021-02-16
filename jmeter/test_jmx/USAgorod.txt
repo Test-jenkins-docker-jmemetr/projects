@@ -1,0 +1,11 @@
+OK|Oklahoma City,35.4,-97.6
+OK|Tulsa,36.2,-95.9
+OK|Knoxville,35.82,-83.98
+TN|Atlanta,33.65,-84.42
+GA|Reno,39.5,-119.78
+NV|Flagstaff,35.13,-111.67
+AZ|Phoenix,33.44,-112.02
+AZ|Tucson,32.12,-110.93
+AZ|Jackson,35.60,-88.92
+TN|Little Rock,35.22,-92.38
+RU|Izhevsk,56.84,53.20
