@@ -22,8 +22,10 @@
           stage ("Run jmeter-docker")
              steps {
                 echo "======start run jmeter======"
-             dir('projects/jmeter')
+                dir('projects/jmeter') {
                 sh 'test'
+                }
+             }
     }
   }
 }
