@@ -15,10 +15,15 @@
           stage ("create docker image") {
               steps {
                   echo "======== start bilding image======"
-              dir ('docker/jmeter') {
-                  sh 'docker build . '
-          }
-       }
+              dir ('projects/jmeter') {
+                  sh 'build'
+                  }
+               }
+          stage ("Run jmeter-docker")
+             steps {
+                echo "======start run jmeter======"
+             dir('projects/jmeter')
+                sh 'test'
     }
   }
 }
