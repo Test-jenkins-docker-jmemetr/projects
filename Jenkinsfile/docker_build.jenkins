@@ -15,14 +15,14 @@ properties ([disableConcurrentBilds()])
           stage ("create docker image") {
               steps {
                   echo "======== start bilding image======"
-              dir ('projects/jmeter') {
+              dir ('jmeter') {
                   sh 'build'
                   }
                }
           stage ("Run jmeter-docker")
              steps {
                 echo "======start run jmeter======"
-                dir('projects/jmeter') {
+                dir('jmeter') {
                 sh 'test'
                 }
             }
