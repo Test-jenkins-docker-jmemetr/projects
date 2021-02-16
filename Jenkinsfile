@@ -1,9 +1,9 @@
-   #!groovy
-   //Run docker bild
+#!groovy
+//Run docker bild
    
-   properties ([disableConcurrentBilds()])
+properties ([disableConcurrentBilds()])
    
-   pipline {
+ pipeline {
       agent {
         label 'main'
         }
