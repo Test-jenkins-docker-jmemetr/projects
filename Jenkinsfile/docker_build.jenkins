@@ -1,7 +1,7 @@
 #!groovy
 //Run docker bild
    
-properties ([disableConcurrentBilds()])
+properties ([disableConcurrentBuilds()])
    
  pipeline {
       agent {
