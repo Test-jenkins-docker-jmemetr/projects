@@ -25,7 +25,7 @@
                 dir('projects/jmeter') {
                 sh 'test'
                 }
-             }
+            }
     }
   }
 }
