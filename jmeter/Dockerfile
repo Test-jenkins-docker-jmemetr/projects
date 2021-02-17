@@ -7,8 +7,9 @@ ARG JMETER_VERSION="5.3"
 ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
 ENV JMETER_BIN  ${JMETER_HOME}/bin
 ENV JMETER_DOWNLOAD_URL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
-ENV JMETER_PLUGINS_DOWNLOAD_URL https://repo1.maven.org/maven2/kg/apc/
-ENV JMETER_PLUGINS_FOLDER ${JMETER_HOME}/lib/ext
+ENV JMETER_PLUGINS_DOWNLOAD_URL https://jmeter-plugins.org/files/packages
+#https://repo1.maven.org/maven2/kg/apc/
+ENV JMETER_PLUGINS_FOLDER ${JMETER_HOME}/lib
 #ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk/jre
 
 #WORKDIR /opt/apache-jmeter-5.2.1
@@ -28,6 +29,9 @@ RUN apk update \
 	&& rm -rf /tmp/dependencies \
 	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/SOAP_jmeter_IPR_finaly_4.jmx > ${JMETER_HOME}/bin/SOAP_jmeter_IPR_finaly_4.jmx \
 	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/USAgorod.txt > ${JMETER_HOME}/bin/USAgorod.txt
+
+RUN curl -L --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/bzm-random-csv-0.6.zip -o ${JMETER_PLUGINS_FOLDER}/bzm-random-csv-0.6.zip
+
 ENV PATH $PATH:$JMETER_BIN
 
 COPY entrypoint.sh /
