@@ -16,7 +16,7 @@ properties ([disableConcurrentBuilds()])
               steps {
                   echo "======== start bilding image======"
               dir ('jmeter') {
-                  sh 'build.sh'
+                  sh './build.sh'
                   }
                }
           }
@@ -24,7 +24,7 @@ properties ([disableConcurrentBuilds()])
              steps {
                 echo "======start run jmeter======"
                 dir('jmeter') {
-                sh 'test.sh'
+                sh './test.sh'
                 }
             }
           }
