@@ -19,14 +19,15 @@ RUN apk update \
 	&& apk add ca-certificates \
 	&& update-ca-certificates \
 	&& apk add --update openjdk8-jre tzdata curl unzip bash \
-	&& apk add --no-cashe nss \
+	&& apk add --no-cache nss \
 	&& rm -rf /var/cache/apk/* \
 	&& mkdir -p /tmp/dependencies \
 	&& curl -L --silent ${JMETER_DOWNLOAD_URL} > /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz \
 	&& mkdir -p /opt \
 	&& tar -xfz /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt \
 	&& rm -rf /tmp/dependencies
-
+	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/SOAP_jmeter_IPR_finaly_4.jmx > ${JMETER_HOME}/bin \
+	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/USAgorod.txt > ${JMETER_HOME}/bin
 ENV PATH $PATH:$JMETER_BIN
 
 COPY entrypoint.sh /
