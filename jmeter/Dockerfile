@@ -24,7 +24,7 @@ RUN apk update \
 	&& mkdir -p /tmp/dependencies \
 	&& curl -L --silent ${JMETER_DOWNLOAD_URL} > /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz \
 	&& mkdir -p /opt \
-	&& tar -vxfz /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt \
+	&& tar -xzf /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt \
 	&& rm -rf /tmp/dependencies \
 	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/SOAP_jmeter_IPR_finaly_4.jmx > ${JMETER_HOME}/bin \
 	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/USAgorod.txt > ${JMETER_HOME}/bin
