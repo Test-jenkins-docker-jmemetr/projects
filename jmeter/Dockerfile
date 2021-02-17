@@ -11,7 +11,7 @@ ENV JMETER_PLUGINS_DOWNLOAD_URL https://repo1.maven.org/maven2/kg/apc/
 ENV JMETER_PLUGINS_FOLDER ${JMETER_HOME}/lib/ext
 #ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk/jre
 
-WORKDIR /opt/apache-jmeter-5.2.1
+#WORKDIR /opt/apache-jmeter-5.2.1
 
 #ARG TZ = "Europe/Moscow"
 RUN apk update \
