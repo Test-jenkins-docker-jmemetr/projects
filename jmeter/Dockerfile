@@ -13,7 +13,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk/jre
 
 WORKDIR /opt/apache-jmeter-5.2.1
 
-ARG TZ = "Europe/Moscow"
+#ARG TZ = "Europe/Moscow"
 RUN apk update \
 	&& apk upgrade \
 	&& apk add ca-certificates \
