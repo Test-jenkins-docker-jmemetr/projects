@@ -15,8 +15,9 @@ properties ([disableConcurrentBuilds()])
           stage ("create docker image") {
               steps {
                   echo "======== start bilding image======"
-              dir ('jmeter') {
-                  sh './build.sh'
+                  dir ('jmeter') {
+                     sh 'chmod +x -R ${env.WORKSPASE}'
+                     sh './build.sh'
                   }
                }
           }
