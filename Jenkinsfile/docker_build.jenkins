@@ -16,7 +16,7 @@ properties ([disableConcurrentBuilds()])
               steps {
                   echo "======== start bilding image======"
                   dir ('jmeter') {
-                     sh 'chmod +x -R /var/lib/jenkins/workspace/test/jmeter'
+                     sh 'sudo chmod +x -R /var/lib/jenkins/workspace/test/jmeter'
                      sh './build.sh'
                   }
                }
@@ -25,7 +25,7 @@ properties ([disableConcurrentBuilds()])
              steps {
                 echo "======start run jmeter======"
                 dir('jmeter') {
-                sh 'chmod +x -R /var/lib/jenkins/workspace/test/jmeter'
+                sh 'sudo chmod +x -R /var/lib/jenkins/workspace/test/jmeter'
                 sh './test.sh'
                 }
             }
