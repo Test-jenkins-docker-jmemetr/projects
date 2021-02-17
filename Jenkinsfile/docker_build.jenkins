@@ -25,6 +25,7 @@ properties ([disableConcurrentBuilds()])
              steps {
                 echo "======start run jmeter======"
                 dir('jmeter') {
+                sh 'chmod +x -R /var/lib/jenkins/workspace/test/jmeter'
                 sh './test.sh'
                 }
             }
