@@ -30,10 +30,11 @@ RUN apk update \
 	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/SOAP_jmeter_IPR_finaly_4.jmx > ${JMETER_HOME}/bin/SOAP_jmeter_IPR_finaly_4.jmx \
 	&& curl -OL https://raw.github.com/Test-jenkins-docker-jmemetr/projects/blob/main/jmeter/test_jmx/USAgorod.txt > ${JMETER_HOME}/bin/USAgorod.txt
 
-RUN curl -OL --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/bzm-random-csv-0.6.zip > ${JMETER_HOME}/bzm-random-csv-0.6.zip
+RUN curl -L --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/bzm-random-csv-0.6.zip > ${JMETER_HOME}/bzm-random-csv-0.6.zip
+RUN curl -L --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/jpgc-casutg-2.9.zip > ${JMETER_HOME}/jpgc-casutg-2.9.zip
 RUN cd ${JMETER_HOME}
 RUN unzip bzm-random-csv-0.6.zip
-
+RUN unzip jpgc-casutg-2.9.zip
 ENV PATH $PATH:$JMETER_BIN
 
 COPY entrypoint.sh /
