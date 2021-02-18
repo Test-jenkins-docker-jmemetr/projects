@@ -85,7 +85,7 @@
       </ConfigTestElement>
       <hashTree/>
       <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="bzm - Random CSV Data Set Config" enabled="true">
-        <stringProp name="filename">.\USAgorod.txt</stringProp>
+        <stringProp name="filename">./USAgorod.txt</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="delimiter">\n</stringProp>
         <stringProp name="variableNames">Randomcity</stringProp>
