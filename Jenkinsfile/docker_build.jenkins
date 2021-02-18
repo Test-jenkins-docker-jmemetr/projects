@@ -29,7 +29,12 @@ properties ([disableConcurrentBuilds()])
                 sh './test.sh'
                 }
             }
-             
+          }
+           stage ("Per monitor") {
+             steps {
+               echo "====monitor====="
+               build job: 'perf monitor'
+             }
           }
          
   }
