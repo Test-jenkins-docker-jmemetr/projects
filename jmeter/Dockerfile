@@ -40,6 +40,7 @@ RUN cd ${JMETER_HOME}
 RUN unzip bzm-random-csv-0.6.zip
 RUN unzip jpgc-casutg-2.9.zip
 RUN curl -L --silent ${JMETER_PLAGIN_MANAGER}/jmeter-plugins-manager-1.6.jar > ${JMETER_PLUGINS_FOLDER}/ext/jmeter-plugins-manager-1.6.jar
+RUN ls -la
 ENV PATH $PATH:$JMETER_BIN
 
 COPY entrypoint.sh /
