@@ -36,7 +36,7 @@ RUN curl -OL --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/bzm-random-csv-0.6.zip > ${
 
 RUN curl -OL --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/jpgc-casutg-2.9.zip > ${JMETER_HOME}/jpgc-casutg-2.9.zip
 
-RUN cd ${JMETER_HOME}\lib
+RUN cd ${JMETER_HOME}/lib
 RUN unzip bzm-random-csv-0.6.zip
 RUN unzip jpgc-casutg-2.9.zip
 RUN ls -la
