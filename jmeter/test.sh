@@ -2,7 +2,7 @@
 
 T_DIR=test_jmx
 
-R_DIR=${T_DIR}/report
+R_DIR=${T_DIR}/report1
 
 rm -rf ${R_DIR} > /dev/null 2>&1
 mkdir -p ${R_DIR}
