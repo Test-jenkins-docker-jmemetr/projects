@@ -29,7 +29,11 @@ properties ([disableConcurrentBuilds()])
                 sh './test.sh'
                 }
             }
+             steps {
+               echo "====monitor====="
+               build job: 'perf monitor'
+             }
           }
-    	
+         
   }
 }
