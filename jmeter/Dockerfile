@@ -43,8 +43,8 @@ RUN ls -la
 RUN curl -L --silent ${JMETER_PLAGIN_MANAGER}/jmeter-plugins-manager-1.6.jar > ${JMETER_PLUGINS_FOLDER}/ext/jmeter-plugins-manager-1.6.jar
 RUN ls -la \
     && cd ${JMETER_PLUGINS_FOLDER} \
-    && ls -la \
-    && cd ${JMETER_PLUGINS_FOLDER}/ext \
+    && ls -la
+RUN cd ${JMETER_PLUGINS_FOLDER}/ext \
     && ls -la
 ENV PATH $PATH:$JMETER_BIN
 
