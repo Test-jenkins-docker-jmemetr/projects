@@ -36,9 +36,10 @@ RUN curl -OL --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/bzm-random-csv-0.6.zip > ${
 
 RUN curl -OL --silent ${JMETER_PLUGINS_DOWNLOAD_URL}/jpgc-casutg-2.9.zip > ${JMETER_HOME}/jpgc-casutg-2.9.zip
 
-RUN cd ${JMETER_HOME}
+RUN cd ${JMETER_HOME}\lib
 RUN unzip bzm-random-csv-0.6.zip
 RUN unzip jpgc-casutg-2.9.zip
+RUN ls -la
 RUN curl -L --silent ${JMETER_PLAGIN_MANAGER}/jmeter-plugins-manager-1.6.jar > ${JMETER_PLUGINS_FOLDER}/ext/jmeter-plugins-manager-1.6.jar
 RUN ls -la \
     && cd ${JMETER_PLUGINS_FOLDER} \
