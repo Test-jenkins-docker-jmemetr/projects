@@ -21,7 +21,6 @@ properties ([disableConcurrentBuilds()])
                   }
                }
           }
-         parallel {
           stage ("Run jmeter-docker") {
              steps {
                 echo "======start run jmeter======"
@@ -37,6 +36,6 @@ properties ([disableConcurrentBuilds()])
                build job: 'perf monitor'
              }
           }
-         }
+         
   }
 }
