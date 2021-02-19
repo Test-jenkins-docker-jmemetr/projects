@@ -5,6 +5,8 @@ T_DIR=test_jmx
 R_DIR=${T_DIR}/report1
 
 rm -rf ${R_DIR} > /dev/null 2>&1
+rm -rf /var/lib/jenkins/workspace/test/jmeter/test_jmx/report1 > /dev/null 2>&1
+
 mkdir -p ${R_DIR}
 
 /bin/rm -f ${T_DIR}/SOAP_jmeter_IPR_finaly_4.jtl ${T_DIR}/jmeter.log > /dev/null 2>&1
